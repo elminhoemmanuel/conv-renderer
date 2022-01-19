@@ -20,6 +20,8 @@
 
 ## Notes
 
+- My documentation as to how the additional task requirement made by the customer can be effected can be found [here](https://docs.google.com/document/d/1HZucElJBkq-xIWRWfxs9nR7gft3d2QBO4VylBcBuDEk/edit?usp=sharing). Also I have however made an implementation of how the additional task can be carried out on this branch.
+
 - All of the setup in the index file `./pages/index.js` file is basically to enable fetching the JSON data being received, the actual component where the solution is implemented is the Renderer component in `./components/layout/Renderer.js`.
 
 - I setup routes to serve the given sample JSON files data.json and data2.json in the `./pages/api/data.js` and `./pages/api/data2.js` respectively. This was just my choice as Next.js makes it easy to setup endpoints to serve JSON data, the JSON data could as well be provided to the Renderer component using any desired technique.
