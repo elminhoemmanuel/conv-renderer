@@ -8,6 +8,7 @@ import { store } from '../redux/store';
 import { createWrapper } from 'next-redux-wrapper';
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor } from './../redux/store';
+import 'react-responsive-modal/styles.css';
 
 
 function MyApp({ Component, pageProps }) {
