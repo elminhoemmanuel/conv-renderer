@@ -5,17 +5,7 @@ module.exports = {
     
     extend: {
       colors: {
-        caspurple1: '#4C00C2',
-        caspurple2: '#32007E',
-        caspurple3: '#3B058E',
-        casgreen: '#19AC51',
-        casred: '#FC484C',
-        casash: '#D3D8E1',
-        casash2: '#798291',
-        casash3: '#444E5D',
-        casdark: '#1A212C',
-        casmint:"#01c9c7",
-        caslightash:"#666f7b",
+        convorange: '#FA6521',
 
         
       }

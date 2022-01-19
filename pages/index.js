@@ -12,6 +12,13 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
     const [loading2, setLoading2] = useState(true);
 
+    useEffect(() => {
+        getData()
+    }, [loading])
+    useEffect(() => {
+        getData2()
+    }, [loading2])
+
     const getData = () => {
         fetch(`${baseUrl}data`)
             .then(response => response.json())
@@ -33,13 +40,7 @@ export default function Home() {
             .catch(error => console.log(error));
     }
     
-
-    useEffect(() => {
-        getData()
-    }, [loading])
-    useEffect(() => {
-        getData2()
-    }, [loading2])
+    
 
     return (
         <>
@@ -52,7 +53,7 @@ export default function Home() {
                 {
                     loading || loading2 ? "Loading...." :
 
-                    <Renderer data={data} />
+                    <Renderer data={data2}/>
                 }
             </div>
         </>
