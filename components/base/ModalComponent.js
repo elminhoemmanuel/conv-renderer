@@ -9,14 +9,16 @@ import BtnComponent from './BtnComponent'
 import LinkComponent from './LinkComponent'
 import BoxComponent from './BoxComponent'
 
-const ModalComponent = ({ isOpen, width, height, children }) => {
+const ModalComponent = ({ width, height, children,showModal, openModal, closeModal,opener }) => {
 
-    const [showModal, setShowModal] = useState(false);
-    const closeModal = () => setShowModal(false);
+    // const [showModal, setShowModal] = useState(false);
+    // const closeModal = () => setShowModal(false);
+    
 
     useEffect(() => {
-        setShowModal(isOpen ? true : false)
-    }, [])
+        console.log(showModal, "Modal comp");
+        
+    }, [showModal])
 
     const getH1 = (offspring) => {
         for (const each in offspring) {
@@ -68,12 +70,11 @@ const ModalComponent = ({ isOpen, width, height, children }) => {
         }
     }
 
+
     return (
         <div>
-            {
-                showModal &&
 
-                <Modal open={isOpen} onClose={closeModal} center styles={{ modal: { width: `${width}`, height: `${height}` } }}>
+                <Modal open={showModal} onClose={closeModal} center styles={{ modal: { width: `${width}`, height: `${height}` } }}>
                     <div className="p-6">
                         {getH1(children)}
                         {getH2(children)}
@@ -84,7 +85,8 @@ const ModalComponent = ({ isOpen, width, height, children }) => {
                         {getBox(children)}
                     </div>
                 </Modal>
-            }
+
+            
         </div>
     );
 };

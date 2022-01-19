@@ -9,25 +9,32 @@ import ModalComponent from './ModalComponent'
 
 const BoxComponent = ({ children, details }) => {
 
-    // const getChildren = (given) =>{
-    //     let childArr = Object.values(given)
-    //     console.log(childArr)
-    //     let i = 0
-    //     for (let i = 0; i < childArr.length; i++) {
-    //         if(childArr[i].Content.type === 'H1Component'){
-    //             console.log("h1")
-    //             return <H1Component text={childArr[i].Content.props.text} />
-    //         }
-    //         if(childArr[i].Content.type === 'H2Component'){
-    //             console.log("h2")
-    //             return <H2Component text={childArr[i].Content.props.text} />
-    //         }
-    //         if(childArr[i].Content.type === 'ListComponent'){
-    //             console.log("list")
-    //             return <ListComponent items={childArr[i].Content.props.li} />
-    //         }
-    //     }
-    // }
+
+    // for additional requirement feature
+    const [showModal, setShowModal] = useState(false);
+    const [closeClicked, setCloseClicked] = useState(false);
+    const openModal = () => {setShowModal((showModal)=>!showModal);console.log(showModal, 'opening')};
+    const closeModal = () => {setShowModal(false);setCloseClicked(true);console.log("closing")};
+
+    useEffect(() => {
+        for (let [key, value] of Object.entries(children)) {
+            if (children[key].Content.type === 'ModalComponent') {
+                console.log("first setter")
+                setShowModal(value.Content.props.isOpen)
+            }
+        }
+        console.log("rendered")
+    }, [])
+
+    useEffect(() => {
+        console.log("tried");
+        if(closeClicked){
+            
+        }else{
+            setShowModal(true)
+        }
+
+    }, [showModal])
 
     const getH1 = (offspring) => {
         for (const each in offspring) {
@@ -60,14 +67,16 @@ const BoxComponent = ({ children, details }) => {
     const getBtn = (offspring) => {
         for (const each in offspring) {
             if (offspring[each].Content.type === 'ButtonComponent') {
-                return <BtnComponent clicked={() => console.log("clicked")} text={offspring[each].Content.props.text} />
+                return <BtnComponent clicked={() => { openModal() }}
+                    text={offspring[each].Content.props.text} />
             }
         }
     }
     const getLink = (offspring) => {
         for (const each in offspring) {
             if (offspring[each].Content.type === 'LinkComponent') {
-                return <LinkComponent url={offspring[each].Content.props.url} clicked={() => console.log("link clicked")} text={offspring[each].Content.props.text} />
+                return <LinkComponent url={offspring[each].Content.props.url}
+                    clicked={() => { console.log("link clicked"); openModal() }} text={offspring[each].Content.props.text} />
             }
         }
     }
@@ -82,18 +91,17 @@ const BoxComponent = ({ children, details }) => {
         for (const each in offspring) {
             if (offspring[each].Content.type === 'ModalComponent') {
                 return <ModalComponent
-                    isOpen={offspring[each].Content.props.isOpen}
                     width={offspring[each].Content.props.width}
                     height={offspring[each].Content.props.height}
                     children={offspring[each].Children}
+                    showModal={showModal}
+                    closeModal={closeModal}
+                    openModal={openModal}
                 />
             }
         }
     }
 
-    useEffect(() => {
-        // console.log(details)
-    }, [])
 
     return (
         <div style={{ borderWidth: `${details ? details.borderSize : "1px"}` }} className="border border-gray-500 p-2">
