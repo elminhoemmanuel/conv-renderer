@@ -1,2 +1,2 @@
 //redux types 
-export const TEST = "TEST"
+export const SET_CHILDREN = "SET_CHILDREN"

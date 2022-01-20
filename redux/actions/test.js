@@ -1,6 +1,6 @@
-import { TEST } from "../types"
+import { SET_CHILDREN } from "../types"
 
 //actions
-export const toggleNew = () => (dispatch) => {
-    dispatch({ type: TEST })
+export const setChildren = (val) => (dispatch) => {
+    dispatch({ type: SET_CHILDREN, payload:val })
 }

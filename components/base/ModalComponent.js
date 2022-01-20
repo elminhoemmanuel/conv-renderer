@@ -11,14 +11,7 @@ import BoxComponent from './BoxComponent'
 
 const ModalComponent = ({ width, height, children,showModal, openModal, closeModal,opener }) => {
 
-    // const [showModal, setShowModal] = useState(false);
-    // const closeModal = () => setShowModal(false);
     
-
-    useEffect(() => {
-        console.log(showModal, "Modal comp");
-        
-    }, [showModal])
 
     const getH1 = (offspring) => {
         for (const each in offspring) {
@@ -72,7 +65,7 @@ const ModalComponent = ({ width, height, children,showModal, openModal, closeMod
 
 
     return (
-        <div>
+        <div key={showModal}>
 
                 <Modal open={showModal} onClose={closeModal} center styles={{ modal: { width: `${width}`, height: `${height}` } }}>
                     <div className="p-6">
